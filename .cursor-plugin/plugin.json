@@ -1,0 +1,14 @@
+{
+  "name": "guzli",
+  "version": "1.0.0",
+  "description": "Guzli remote MCP — AI chat and voice agents, unified inbox, campaigns, and conversations via https://mcp.guzli.com/mcp",
+  "author": {
+    "name": "Guzli",
+    "email": "dev@guzli.com"
+  },
+  "homepage": "https://guzli.com",
+  "repository": "https://github.com/kodeine/guzli-mcp-plugin",
+  "license": "Apache-2.0",
+  "keywords": ["guzli", "mcp", "ai-agent", "voice", "chatbot", "customer-support", "inbox"],
+  "logo": "assets/logo.png"
+}
