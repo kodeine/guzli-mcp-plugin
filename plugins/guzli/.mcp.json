@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "guzli": {
+      "type": "http",
+      "url": "https://mcp.guzli.com/mcp"
+    }
+  }
+}
