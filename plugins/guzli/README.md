@@ -10,6 +10,19 @@ Remote [Model Context Protocol](https://modelcontextprotocol.io) connector for [
 
 ## Install
 
+### Claude Code
+
+```sh
+claude plugin marketplace add kodeine/guzli-mcp-plugin
+claude plugin install guzli@guzli-plugins
+```
+
+The plugin adds one remote MCP server and one shared `guzli-copilot` skill. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
+
+Guzli is not listed in the Claude connectors directory. That separate directory is not required for installation from this repository's plugin marketplace.
+
+### Cursor and Grok
+
 1. In Cursor, install **Guzli** from the Marketplace when available, or add the remote server URL above as a custom MCP connector. In Grok, select the Guzli connector when available, or add the same URL where custom remote MCP connectors are supported. Availability depends on your client/account.
 2. Complete the Guzli OAuth sign-in when prompted.
 3. Tools appear after authentication and consent. No local command, environment variables, or API key are configured by this plugin.
@@ -71,11 +84,22 @@ The separate **tenant-operations** catalog offers **130 REST-projected tools** w
 
 For a local stdio MCP (CLI + `guzli-mcp`), see [`kodeine/guzli-cli`](https://github.com/kodeine/guzli-cli).
 
+## Validation
+
+From the repository root, with Node.js and the Claude Code CLI on `PATH`, run:
+
+```sh
+node scripts/validate-template.mjs
+bash scripts/validate-claude.sh
+```
+
+The Claude gate validates both this plugin and the marketplace root with `--strict` (warnings fail). The Cursor validator's missing-hooks warning is expected because no hooks are bundled.
+
 ## Privacy & terms
 
 - [Privacy Policy](https://guzli.com/privacy/)
 - [Terms](https://guzli.com/terms/)
-- Support: `dev@guzli.com`
+- [Support](mailto:dev@guzli.com)
 
 ## License
 

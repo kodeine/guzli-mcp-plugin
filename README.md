@@ -1,8 +1,21 @@
 # Guzli MCP plugins
 
-[Guzli](https://guzli.com) provides no-code AI chat and voice agents with a unified inbox. This repository packages its remote MCP connector and copilot guidance for Cursor, with connection instructions for Grok.
+[Guzli](https://guzli.com) provides no-code AI chat and voice agents with a unified inbox. This repository packages its remote MCP connector and shared copilot guidance for Cursor and Claude Code, with connection instructions for Grok.
 
 ## Install and authenticate
+
+### Claude Code
+
+```sh
+claude plugin marketplace add kodeine/guzli-mcp-plugin
+claude plugin install guzli@guzli-plugins
+```
+
+The plugin adds one remote MCP server and one shared `guzli-copilot` skill. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
+
+Guzli is not listed in the Claude connectors directory. That separate directory is not required for installation from this repository's plugin marketplace.
+
+### Cursor and Grok
 
 In Cursor, install **Guzli** from the Marketplace when available, or add a custom remote MCP server with URL `https://mcp.guzli.com/mcp`. The exact URL-only configuration is in [`plugins/guzli/mcp.json`](plugins/guzli/mcp.json).
 
@@ -41,28 +54,43 @@ See the [plugin README](plugins/guzli/README.md) and [copilot skill](plugins/guz
 
 ## Repository and submission
 
-This repository follows Cursor's multi-plugin template with one plugin:
+This repository shares one plugin body between Cursor and Claude Code marketplace layouts:
 
 ```text
 .cursor-plugin/marketplace.json
+.claude-plugin/marketplace.json
 plugins/guzli/.cursor-plugin/plugin.json
+plugins/guzli/.claude-plugin/plugin.json
 plugins/guzli/mcp.json
+plugins/guzli/.mcp.json
 plugins/guzli/assets/logo.svg
 plugins/guzli/README.md
 plugins/guzli/skills/guzli-copilot/SKILL.md
 scripts/validate-template.mjs
+scripts/validate-claude.sh
 LICENSE
 ```
 
 The marketplace registers `guzli` from `./plugins/guzli`. Plugin and marketplace version: **1.1.0**. The service catalog version is separate. The production logo is committed and referenced relative to the plugin directory. No dependencies, hooks, rules, agents, or commands are bundled.
 
-Before submission, run `node scripts/validate-template.mjs` from the repository root. A missing-hooks warning is expected because this plugin has no automation hooks. Submit the repository URL to the Cursor team through its submission channel; this layout does not itself imply Marketplace approval or publication.
+Submit the repository URL to the Cursor team through its submission channel; this layout does not itself imply Marketplace approval or publication.
+
+## Validation
+
+From the repository root, with Node.js and the Claude Code CLI on `PATH`, run:
+
+```sh
+node scripts/validate-template.mjs
+bash scripts/validate-claude.sh
+```
+
+The Claude gate runs `claude plugin validate --strict` on both `plugins/guzli` and the marketplace root; warnings fail the gate. The Cursor validator's missing-hooks warning is expected because this plugin has no automation hooks.
 
 ## Privacy, terms, and support
 
 - [Privacy Policy](https://guzli.com/privacy/)
 - [Terms](https://guzli.com/terms/)
-- Support: `dev@guzli.com`
+- [Support](mailto:dev@guzli.com)
 - Local stdio alternative: [`kodeine/guzli-cli`](https://github.com/kodeine/guzli-cli)
 
 ## License

@@ -1,0 +1,15 @@
+{
+  "name": "guzli-plugins",
+  "owner": { "name": "Guzli", "email": "dev@guzli.com" },
+  "metadata": {
+    "description": "Guzli remote MCP plugins for AI chat and voice operations",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "guzli",
+      "source": "./plugins/guzli",
+      "description": "Guzli copilot for contacts, campaigns, conversations, knowledge, and voice operations"
+    }
+  ]
+}
