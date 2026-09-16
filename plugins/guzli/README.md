@@ -17,7 +17,7 @@ claude plugin marketplace add kodeine/guzli-mcp-plugin
 claude plugin install guzli@guzli-plugins
 ```
 
-The plugin adds one remote MCP server and three skills: `guzli-mcp-core`, `guzli-mcp-email-outreach`, and `guzli-mcp-voice-campaigns`. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
+The plugin adds one remote MCP server and three skills: `guzli-mcp-core`, `guzli-mcp-email-outreach`, and `guzli-mcp-voice-campaigns`. A Guzli account is required. OAuth sign-in completes on first use.
 
 Guzli is not listed in the Claude connectors directory. That separate directory is not required for installation from this repository's plugin marketplace.
 
@@ -43,7 +43,7 @@ For Cursor custom MCP configuration:
 
 ## Copilot catalog
 
-The released 1.0.22 catalog captured September 15, 2026 contains **101 copilot tools** using default scopes `guzli:copilot:read` and `guzli:copilot:act`. Plugin version 1.1.0 is independent of the service release. Representative families:
+The released 1.0.22 catalog captured September 15, 2026 contains **101 copilot tools**. Plugin version 1.1.0 is independent of the service release. Representative families:
 
 | Family | Example tools |
 | --- | --- |
@@ -73,8 +73,6 @@ Use `report_issue` for product bugs. The snapshot has **96 automatic / 5 ask-fir
 - `release_managed_phone_number`
 
 Ask-first calls use the engine's approval flow. Automatic posture is not blanket permission for unrelated actions; live authorization, policy, and tool schemas still govern each call.
-
-The separate **tenant-operations** catalog offers **130 REST-projected tools** with `guzli:read` / `guzli:write` scopes on request. The separate **webchat** catalog has **9 tools**; neither count is added to the default copilot catalog.
 
 ## Included skills
 
