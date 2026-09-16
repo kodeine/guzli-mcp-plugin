@@ -11,7 +11,7 @@ claude plugin marketplace add kodeine/guzli-mcp-plugin
 claude plugin install guzli@guzli-plugins
 ```
 
-The plugin adds one remote MCP server and one shared `guzli-copilot` skill. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
+The plugin adds one remote MCP server and three skills: `guzli-mcp-core`, `guzli-mcp-email-outreach`, and `guzli-mcp-voice-campaigns`. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
 
 Guzli is not listed in the Claude connectors directory. That separate directory is not required for installation from this repository's plugin marketplace.
 
@@ -50,7 +50,7 @@ Use `report_issue` for product bugs. The snapshot has **96 automatic / 5 ask-fir
 
 On request, the separate **tenant-operations** catalog exposes **130 REST-projected tools** under `guzli:read` / `guzli:write`. The separate **webchat** catalog has **9 tools**. Neither count is added to the default copilot catalog.
 
-See the [plugin README](plugins/guzli/README.md) and [copilot skill](plugins/guzli/skills/guzli-copilot/SKILL.md) for workflow guidance.
+See the [plugin README](plugins/guzli/README.md), [general skill](plugins/guzli/skills/guzli-mcp-core/SKILL.md), [email skill](plugins/guzli/skills/guzli-mcp-email-outreach/SKILL.md), and [voice skill](plugins/guzli/skills/guzli-mcp-voice-campaigns/SKILL.md) for workflow guidance.
 
 ## Repository and submission
 
@@ -65,7 +65,9 @@ plugins/guzli/mcp.json
 plugins/guzli/.mcp.json
 plugins/guzli/assets/logo.svg
 plugins/guzli/README.md
-plugins/guzli/skills/guzli-copilot/SKILL.md
+plugins/guzli/skills/guzli-mcp-core/SKILL.md
+plugins/guzli/skills/guzli-mcp-email-outreach/SKILL.md
+plugins/guzli/skills/guzli-mcp-voice-campaigns/SKILL.md
 scripts/validate-template.mjs
 scripts/validate-claude.sh
 LICENSE

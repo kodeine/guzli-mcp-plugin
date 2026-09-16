@@ -17,7 +17,7 @@ claude plugin marketplace add kodeine/guzli-mcp-plugin
 claude plugin install guzli@guzli-plugins
 ```
 
-The plugin adds one remote MCP server and one shared `guzli-copilot` skill. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
+The plugin adds one remote MCP server and three skills: `guzli-mcp-core`, `guzli-mcp-email-outreach`, and `guzli-mcp-voice-campaigns`. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
 
 Guzli is not listed in the Claude connectors directory. That separate directory is not required for installation from this repository's plugin marketplace.
 
@@ -76,9 +76,13 @@ Ask-first calls use the engine's approval flow. Automatic posture is not blanket
 
 The separate **tenant-operations** catalog offers **130 REST-projected tools** with `guzli:read` / `guzli:write` scopes on request. The separate **webchat** catalog has **9 tools**; neither count is added to the default copilot catalog.
 
-## Included skill
+## Included skills
 
-[`guzli-copilot`](skills/guzli-copilot/SKILL.md) covers tool families, campaign lifecycle, managed-number purchase, and issue reporting. It adds guidance only, with no hooks or background automation.
+- [`guzli-mcp-core`](skills/guzli-mcp-core/SKILL.md): shared discovery, contacts, tags, knowledge, managed numbers, configuration and issue reports.
+- [`guzli-mcp-email-outreach`](skills/guzli-mcp-email-outreach/SKILL.md): one-off email and permission, draft, publish, enroll and run workflows.
+- [`guzli-mcp-voice-campaigns`](skills/guzli-mcp-voice-campaigns/SKILL.md): one-off calls, voice campaigns and structured answers.
+
+Each skill includes its own references. They add guidance only, with no hooks or background automation.
 
 ## Local alternative
 
