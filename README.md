@@ -11,7 +11,7 @@ claude plugin marketplace add kodeine/guzli-mcp-plugin
 claude plugin install guzli@guzli-plugins
 ```
 
-The plugin adds one remote MCP server and three skills: `guzli-mcp-core`, `guzli-mcp-email-outreach`, and `guzli-mcp-voice-campaigns`. A Guzli account is required. On first use, complete Guzli's OAuth sign-in and consent for `guzli:copilot:read` and `guzli:copilot:act`.
+The plugin adds one remote MCP server and three skills: `guzli-mcp-core`, `guzli-mcp-email-outreach`, and `guzli-mcp-voice-campaigns`. A Guzli account is required. OAuth sign-in completes on first use.
 
 Guzli is not listed in the Claude connectors directory. That separate directory is not required for installation from this repository's plugin marketplace.
 
@@ -25,7 +25,7 @@ The endpoint uses **streamable HTTP** and **OAuth 2.0 authorization code + PKCE*
 
 ## Available operations
 
-The service's 1.0.22 catalog captured September 15, 2026 provides **101 copilot tools** through default scopes `guzli:copilot:read` + `guzli:copilot:act`. Examples by family:
+The service's 1.0.22 catalog captured September 15, 2026 provides **101 copilot tools**. Examples by family:
 
 | Family | Example tools |
 | --- | --- |
@@ -47,8 +47,6 @@ The service's 1.0.22 catalog captured September 15, 2026 provides **101 copilot 
 | Web and integrations | `web_search`, `web_fetch`, `create_webhook_integration` |
 
 Use `report_issue` for product bugs. The snapshot has **96 automatic / 5 ask-first** tools. The five ask-first tools are `configure_agent_system_prompt`, `create_opportunity`, `propose_agent_configuration_change`, `propose_tool_posture_change`, and `release_managed_phone_number`. Live engine approval and authorization controls apply; automatic posture does not grant permission for unrelated actions.
-
-On request, the separate **tenant-operations** catalog exposes **130 REST-projected tools** under `guzli:read` / `guzli:write`. The separate **webchat** catalog has **9 tools**. Neither count is added to the default copilot catalog.
 
 See the [plugin README](plugins/guzli/README.md), [general skill](plugins/guzli/skills/guzli-mcp-core/SKILL.md), [email skill](plugins/guzli/skills/guzli-mcp-email-outreach/SKILL.md), and [voice skill](plugins/guzli/skills/guzli-mcp-voice-campaigns/SKILL.md) for workflow guidance.
 
