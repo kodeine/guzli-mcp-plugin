@@ -34,6 +34,51 @@ not describe a server default. Use the user's authorized policy, never a weaker
 policy to bypass a failure. Purpose is marketing or transactional. Preserve
 independent body_text when supplying body_html; author HTML inside the body_html argument.
 
+An attributed reply to a campaign email automatically unenrolls its source
+enrollment and pauses other marketing automation for that contact on the email
+channel pending disposition. There is no `stop_on_reply` flag.
+`continuation_policy` (`advance_on_success` or `stop_on_failure`) governs step
+failure, not replies.
+
+Revisions support duration and fact-deadline waits and branch steps. The
+compact `guzli:add_campaign_draft_email_step` and
+`guzli:add_campaign_draft_wait_step` tools author email steps and duration
+waits only; there is no compact add-branch tool. Author fact-deadline waits
+and branches through the full draft revision update.
+
+### Day 1, 3, 7 and 20 sequence
+
+Use verified content, sender, audience, permission and postal address. The
+first send is created by `guzli:create_email_campaign`; each wait starts after
+the previous send. Read back the draft and use the latest returned
+`expected_lock_version` for each next call. Replace each placeholder with the
+returned identifier or current lock value. The attributed-reply stop is automatic.
+
+```text
+1. guzli:create_email_campaign
+   {"name":"Requested follow-up","agent_id":"<agent UUID>","audience_policy":{"kind":"explicit"},"subject":"Day 1 update","body_text":"<confirmed Day 1 text>","tenant_postal_address":"<confirmed mailing address>","purpose":"marketing","permission_requirement":"required","unsubscribe_requirement":"required","admission_policy":{"subject_key":"contact","effect_key":"campaign.followup"},"cap_policy":{"maximum_daily_channel_units":40}}
+2. guzli:add_campaign_draft_wait_step
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":1,"position":{"index":1},"semantic_key":"wait_to_day_3","duration_seconds":172800}
+3. guzli:add_campaign_draft_email_step
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":2,"position":{"index":2},"semantic_key":"day_3_email","purpose":"marketing","subject":"Day 3 update","body_text":"<confirmed Day 3 text>","tenant_postal_address":"<confirmed mailing address>"}
+4. guzli:add_campaign_draft_wait_step
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":3,"position":{"index":3},"semantic_key":"wait_to_day_7","duration_seconds":345600}
+5. guzli:add_campaign_draft_email_step
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":4,"position":{"index":4},"semantic_key":"day_7_email","purpose":"marketing","subject":"Day 7 update","body_text":"<confirmed Day 7 text>","tenant_postal_address":"<confirmed mailing address>"}
+6. guzli:add_campaign_draft_wait_step
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":5,"position":{"index":5},"semantic_key":"wait_to_day_20","duration_seconds":1123200}
+7. guzli:add_campaign_draft_email_step
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":6,"position":{"index":6},"semantic_key":"day_20_email","purpose":"marketing","subject":"Day 20 update","body_text":"<confirmed Day 20 text>","tenant_postal_address":"<confirmed mailing address>"}
+8. guzli:publish_email_campaign
+   {"campaign_id":"<campaign UUID>","revision_id":"<draft UUID>","expected_lock_version":7}
+9. guzli:enroll_campaign_contacts
+   {"campaign_id":"<campaign UUID>","contact_ids":["<authorized contact UUID>"],"requested_at":"<current ISO timestamp>"}
+```
+
+The lock values above illustrate successive edits; use each actual returned
+lock value. Publish only after the readiness and authorization checks below,
+then verify enrollment and run as directed there.
+
 ## Edit a draft without publishing
 
 - [ ] Read the draft with `guzli:get_campaign_revision`; use its step_id and lock.

@@ -62,3 +62,12 @@ Read [approval handling](references/approval.md) when a tool returns a hold.
 
 For email or voice work, select the matching sibling skill. Do not send through
 another channel or tool to bypass a permission failure or approval hold.
+
+## Transport-class failures
+
+| Response facts | Action |
+| --- | --- |
+| `reason_code: mcp_execution_transport_failure`, `status: failed_retryable`, `may_have_executed: true`, `engine_status: 503` | The call did not complete cleanly. Do not re-issue a write such as send, publish or enroll; it may have executed. A read may be retried once. If failure persists, report the UTC timestamp and response. |
+
+`operation_id` is a digest of the tool and arguments and is identical across
+retries by design. Its reuse does not indicate a stuck request.

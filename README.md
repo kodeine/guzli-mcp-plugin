@@ -71,7 +71,7 @@ scripts/validate-claude.sh
 LICENSE
 ```
 
-The marketplace registers `guzli` from `./plugins/guzli`. Plugin and marketplace version: **1.1.0**. The service catalog version is separate. The production logo is committed and referenced relative to the plugin directory. No dependencies, hooks, rules, agents, or commands are bundled.
+The marketplace registers `guzli` from `./plugins/guzli`. Plugin and marketplace version: **1.1.1**. The service catalog version is separate. The production logo is committed and referenced relative to the plugin directory. No dependencies, hooks, rules, agents, or commands are bundled.
 
 Submit the repository URL to the Cursor team through its submission channel; this layout does not itself imply Marketplace approval or publication.
 

@@ -60,6 +60,17 @@ permission-required campaign enrollment or send.
 - [ ] Verify publication, enroll the authorized explicit audience, then run.
 - [ ] Read enrollment and campaign results; queued does not mean delivered.
 
+| Policy or step | Meaning |
+| --- | --- |
+| Attributed email reply | Automatically unenrolls its source enrollment and pauses other marketing automation for that contact on the email channel pending disposition. There is no `stop_on_reply` flag. `continuation_policy` (`advance_on_success` or `stop_on_failure`) governs step failure, not replies. |
+| Waits and branches | Revisions support duration and fact-deadline waits and branch steps. `add_campaign_draft_email_step` and `add_campaign_draft_wait_step` author email steps and duration waits only; there is no compact add-branch tool. Author fact-deadline waits and branches through the full draft revision update. |
+| `cap_policy.maximum_daily_channel_units` | Per-campaign rolling 24-hour send limit. Every step send, including follow-ups, counts. The organization's daily cap is separate. |
+| `quiet_hours_policy.timezone_selection` | `contact`, `organization` or `fixed`. `contact` uses the configured target timezone; do not infer one from a phone number or country. |
+
+**Not available:** Email opens and clicks are not sequence waits or segment
+predicates. Engagement tracking is default-off and permission-gated; opens
+never drive lifecycle.
+
 | Task | Tool |
 | --- | --- |
 | Resolve contacts | `guzli:find_contacts`, `guzli:lookup_contact` |

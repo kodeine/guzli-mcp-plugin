@@ -3,7 +3,7 @@
   "owner": { "name": "Guzli", "email": "dev@guzli.com" },
   "metadata": {
     "description": "Guzli remote MCP plugins for AI chat and voice operations",
-    "version": "1.1.0"
+    "version": "1.1.1"
   },
   "plugins": [
     {
