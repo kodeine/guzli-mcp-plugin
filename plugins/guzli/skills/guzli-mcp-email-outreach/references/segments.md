@@ -3,6 +3,10 @@
 Use the explicit-audience campaign checklist by
 default; use this branch when the user requests a segment audience.
 
+**Not available:** Email opens and clicks are not segment predicates or sequence
+waits. Engagement tracking is default-off and permission-gated; opens never
+drive lifecycle.
+
 - [ ] Read `guzli:get_segment_field_catalog` for fields and allowed operators.
 - [ ] Preview the intended expression with `guzli:preview_segment`; inspect
   matches and correct the expression until it reflects the requested audience.

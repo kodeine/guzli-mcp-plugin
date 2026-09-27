@@ -43,7 +43,7 @@ For Cursor custom MCP configuration:
 
 ## Copilot catalog
 
-The released 1.0.22 catalog captured September 15, 2026 contains **101 copilot tools**. Plugin version 1.1.0 is independent of the service release. Representative families:
+The released 1.0.22 catalog captured September 15, 2026 contains **101 copilot tools**. Plugin version 1.1.1 is independent of the service release. Representative families:
 
 | Family | Example tools |
 | --- | --- |
