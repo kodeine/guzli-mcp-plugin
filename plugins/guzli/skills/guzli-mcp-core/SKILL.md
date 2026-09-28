@@ -37,6 +37,17 @@ configuration, conversation and issue workflows. Read
 [managed numbers](references/managed-numbers.md) before a purchase or release.
 Read [approval handling](references/approval.md) when a tool returns a hold.
 
+## Beyond MCP: the REST API
+
+Email image assets are uploaded, listed, retired and previewed through the
+Guzli REST API, then referenced in email HTML. Follow the
+[email asset workflow](../guzli-mcp-email-outreach/references/campaign.md#inline-image-assets)
+for the exact routes and limits. Ask the operator for a **server** API key from
+the tenant admin's Guzli dashboard API keys settings and send it as `X-Api-Key`.
+Client keys are refused. The MCP OAuth session does not authorize REST asset
+requests; never reuse its token or another credential, and do not store a key
+in this skill.
+
 ## Select the operation
 
 | Request | Tool |

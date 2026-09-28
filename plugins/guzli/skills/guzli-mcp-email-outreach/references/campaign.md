@@ -3,6 +3,49 @@
 Replace angle-bracket placeholders with verified facts.
 Numeric examples are illustrative: use the authorized cap and latest lock value.
 
+## Inline image assets
+
+Use this workflow for `guzli:send_email` and campaign email steps. There is no
+MCP asset upload tool.
+
+| Task | REST method and path |
+| --- | --- |
+| Upload | `POST /api/public/v2/email-image-assets` |
+| List | `GET /api/public/v2/email-image-assets` |
+| Retire | `POST /api/public/v2/email-image-assets/{slug}/retire` |
+| Preview | `GET /api/public/v2/email-image-assets/{slug}/preview` |
+
+- [ ] Ask the operator for a **server** API key issued by the tenant admin in
+  the Guzli dashboard's API keys settings. Send it as `X-Api-Key` to the REST
+  API. Client keys are refused. The MCP OAuth session does not authorize these
+  routes; never reuse its token or another credential. Do not store the key in
+  this skill or campaign content.
+- [ ] Upload a named image as multipart form data with required `file` and
+  optional `alt_text`. Supply the server key securely in
+  `GUZLI_SERVER_API_KEY` for this request:
+
+```sh
+curl --request POST 'https://api.guzli.com/api/public/v2/email-image-assets' \
+  --header "X-Api-Key: $GUZLI_SERVER_API_KEY" \
+  --form 'file=@./image.png;type=image/png' \
+  --form 'alt_text=Product screenshot'
+```
+
+- [ ] Use the returned `slug` in `body_html`, for example
+  `<img src="asset:<slug>" alt="Product screenshot">`. Keep `body_text` required
+  and useful on its own. The service turns the asset reference into an embedded
+  image when sending a one-off email or a campaign email step.
+- [ ] Keep each asset at or below **1,048,576 bytes (1 MiB)**. Supported types
+  are **GIF, PNG and JPEG** (`image/gif`, `image/png`, `image/jpeg`); the image
+  bytes must match the declared type. Each message permits at most **two
+  distinct assets** and **2,097,152 image bytes (2 MiB)** in total. Give each
+  `<img>` a nonblank `alt` of at most **1,000 characters**. Supplied upload
+  `alt_text` also has a 1,000-character limit; if omitted, it is derived from
+  the filename. Read the upload or list response's `limits` for current values.
+- [ ] Read back the asset with the list or preview route if needed. Use the
+  returned `slug`, not a guessed identifier. Retired assets cannot be used in
+  new sends.
+
 ## Prepare and create
 
 - [ ] Resolve contacts with `guzli:find_contacts` and `guzli:lookup_contact`.

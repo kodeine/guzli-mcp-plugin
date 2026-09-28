@@ -32,6 +32,12 @@ Read exposed schemas before supplying arguments to the Guzli tools.
 - [ ] Use `guzli:send_email` with required plain text and optional
   independent HTML. Write real markup directly in the body_html tool argument,
   not escaped tags or merely HTML pasted into the chat response.
+- [ ] For an inline image, upload it through the REST API first, then use its
+  returned `slug` in `body_html` as `<img src="asset:<slug>" alt="Description">`.
+  Keep `body_text` independently meaningful. The service embeds the image when
+  it sends the email; do not paste a preview URL or a `cid:` URL into the draft.
+  Follow [the asset workflow](references/campaign.md#inline-image-assets) for
+  upload, authentication and limits.
 
 ```json
 {"to":"person@example.com","subject":"Appointment confirmation","body_text":"Your appointment is confirmed.","body_html":"<h2>Appointment confirmed</h2><p>Thank you.</p>"}
