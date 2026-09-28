@@ -25,7 +25,7 @@ MCP asset upload tool.
   `GUZLI_SERVER_API_KEY` for this request:
 
 ```sh
-curl --request POST 'https://api.guzli.com/api/public/v2/email-image-assets' \
+curl --request POST 'https://gateway.guzli.com/api/public/v2/email-image-assets' \
   --header "X-Api-Key: $GUZLI_SERVER_API_KEY" \
   --form 'file=@./image.png;type=image/png' \
   --form 'alt_text=Product screenshot'
