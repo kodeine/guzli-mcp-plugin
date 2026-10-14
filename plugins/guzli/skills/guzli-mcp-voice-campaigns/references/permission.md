@@ -6,7 +6,7 @@ it is a campaign enrollment with a campaign permission-row check.
 
 - [ ] Read the campaign step's permission_requirement and purpose. If permission
   is required, check every recipient before enrollment or sending.
-- [ ] Use `guzli:list_contact_permission_heads`:
+- [ ] Use `guzli:list_contact_channel_permissions`:
 
 ```json
 {"contact_id":"<contact UUID>"}
@@ -39,7 +39,7 @@ actual evidence. The example's purpose and basis are not defaults: set them to
 the confirmed facts. If required evidence or the policy identifier is unknown,
 obtain it before capture. Use expires_at only when supported by the evidence.
 
-- [ ] Re-read `guzli:list_contact_permission_heads` and verify the channel,
+- [ ] Re-read `guzli:list_contact_channel_permissions` and verify the channel,
   purpose and active state. Correct rejected evidence only from confirmed facts,
   then re-check. Do not send while the permission check remains unresolved.
 - [ ] On permission_missing, permission_inactive or permission_basis_not_allowed,
