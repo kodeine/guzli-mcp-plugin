@@ -21,6 +21,23 @@ changes, inspect `guzli:list_lifecycle_stages` and the contact's
 `guzli:get_contact_lifecycle_stage` before `guzli:set_contact_lifecycle_stage`;
 re-read to verify the requested transition.
 
+
+`guzli:create_contact` and `guzli:update_contact` define a previously unknown
+custom attribute on first use of a valid, non-null scalar value; no separate
+attribute-definition call is needed. The key must match `[a-z][a-z0-9_]{0,63}`.
+The value infers the tenant schema type: boolean, number, valid `YYYY-MM-DD`
+date, or otherwise text. Objects and arrays are refused. Existing schema types
+are retained, with coercion; incompatible values and archived attributes are
+refused. Per-key null never defines an attribute; for an existing attribute it
+retracts the value. Supply only authorized contact facts.
+
+`guzli:search_contacts` filters use existing visible schema names and refuse
+unknown names with `attribute_unknown` before searching; search never defines
+attributes. In `guzli:get_segment_field_catalog`, match that name against
+`attribute_name`, then copy the returned `field_key` and allowed operators into
+the segment predicate. The key remains `contact.custom_attribute.<schema_id.hex>`;
+the schema name is metadata, not an alternate field key.
+
 ## Segments
 
 - [ ] Read `guzli:get_segment_field_catalog` for field keys and allowed operators.
